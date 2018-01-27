@@ -10,7 +10,7 @@ const deviceInfo = function (req) {
 		voltage: '3.8V',
 		lastTime: '2018年1月23日14:33:24',
 		lastPlace: '广州市天河区华夏路49津滨腾越大厦',
-	}):''
+	}):'';
 }
 
 // Mock.mock( url, post/get , 返回的数据);
