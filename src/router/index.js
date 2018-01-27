@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import deviceBind from '@/page/device/deviceBind'
-import deviceInfo from '@/page/device/deviceInfo'
+import home from '@/page/home/home'
 
 
 Vue.use(Router)
@@ -11,18 +10,8 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
-			name: 'deviceBind',
-			component: deviceBind
-		},
-		{
-			path: '/deviceBind',
-			name: 'deviceBind',
-			component: deviceBind
-		},
-		{
-			path: '/deviceInfo',
-			name: 'deviceInfo',
-			component: deviceInfo
+			name: 'home',
+			component: home
 		}
 	]
 })
