@@ -5,40 +5,50 @@
 			<div class="device-sn">设备SN：
 				<span>{{sn}}</span>
 			</div>
-			<router-view/>
+			<router-view :sn="sn" />
 		</div>
 	</div>
 </template>
 
 <script>
-//url取参数值工具
-import { urlParse } from "./js/util";
+import parseQueryString from "outils/parseQueryString";
 export default {
   name: "App",
   data: function() {
     return {
-      title: "设备绑定",
-      sn: ""
+      title: "",
+	  sn: ""
     };
   },
   created: function() {
     this.getSnNum();
+    this.getDeviceInfo();
   },
   methods: {
     getSnNum() {
-	  let queryParam = urlParse();
-	  console.log(queryParam)
-     this.sn = queryParam.sn;
+      let queryParam = parseQueryString();
+      this.sn = queryParam.sn;
+    },
+    getDeviceInfo() {
+      this.$http({
+        method: "post",
+        url: "/api/deviceInfo",
+        data: this.sn
+      }).then(resp => {
+		console.log(resp);
+		this.title=resp.data?'设备查看':'设备绑定';
+        this.deviceInfo = resp.data;
+      });
     }
   }
 };
 </script>
 <style lang="less" scoped>
-.main-body{
-	margin-top: 40px;
-	.device-sn{
-		padding: 5px 10px;
-		text-align: center;
-	}
+.main-body {
+  margin-top: 40px;
+  .device-sn {
+    padding: 5px 10px;
+    text-align: center;
+  }
 }
 </style>

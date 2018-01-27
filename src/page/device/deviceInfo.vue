@@ -1,24 +1,33 @@
 <template>
 	<div class="index">
-		{{deviceInfo.a}}
+		aaaa
+		<ul>
+			<li>
+				<label for="">vin</label>
+				<span>{{sn}}</span>
+			</li>
+		</ul>
 	</div>
 </template>
 
 <script>
 export default {
+  props: {
+    sn: String
+  },
   data() {
     return {
-      deviceInfo:""
+      deviceInfo: {}
     };
   },
   created() {
-   // this.setNewsApi();
+    // this.setNewsApi();
   },
   methods: {
     setNewsApi: function() {
       this.$http.get("/api/deviceInfo").then(resp => {
-		  console.log(resp);
-		  this.deviceInfo=resp.data
+        console.log(resp);
+        this.deviceInfo = resp.data;
       });
     }
   }

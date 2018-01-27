@@ -6,15 +6,13 @@ import './style/base.less'
 import 'mint-ui/lib/style.css'
 import App from './App'
 import router from './router'
-import VueResource from 'vue-resource';
-import outils from 'outils';
+import axios from 'axios'
 
 
 // 引入mockjs
 require('./mock.js');
-
+Vue.prototype.$http = axios;
 Vue.use(Mint);
-Vue.use(VueResource);
 
 Vue.config.productionTip = false
 

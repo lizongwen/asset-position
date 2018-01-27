@@ -1,14 +1,15 @@
 <template>
-  <div class="">
-  </div>
+	<div class="">
+	</div>
 </template>
 
 <script>
 export default {
-
-}
+  created: function() {
+  }
+};
 </script>
-
-<style>
+<style lang="less" scoped>
 
 </style>
+
