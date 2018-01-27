@@ -1,7 +1,28 @@
 <template>
   <div class="device-info">
-	  设备信息
-	  {{sn}}
+	  <ul v-if="ok">
+		  <li>
+			  <span>vin</span>
+			  <span>{{deviceInfo.vin}}</span>
+		  </li>
+		  <li>
+			  <span>车型</span>
+			  <span>{{deviceInfo.car}}</span>
+		  </li>
+		  <li>
+			  <span>设备电压</span>
+			  <span>{{deviceInfo.voltage}}</span>
+		  </li>
+		  <li>
+			  <span>最后通信时间</span>
+			  <span>{{deviceInfo.lastTime}}</span>
+		  </li>
+		  <li>
+			  <span>最后通信位置</span>
+			  <span>{{deviceInfo.lastPlace}}</span>
+		  </li>
+	  </ul>
+	  <div v-if="!ok" class="error-msg">该设备未绑定车辆！</div>
   </div>
 </template>
 
@@ -10,6 +31,12 @@ export default {
   name: "deviceInfo",
   props: {
     sn: String
+  },
+  data: function() {
+    return {
+      deviceInfo: {},
+      ok: false
+    };
   },
   created: function() {
     this.getDeviceInfo();
@@ -22,13 +49,23 @@ export default {
         data: this.sn
       }).then(resp => {
         console.log(resp);
-        this.$parent.setTitle(resp.data ? "设备查看" : "设备绑定");
+        if (resp.data) {
+		  this.$parent.setTitle("设备查看");
+		  this.$parent.isBind=true;
+          this.deviceInfo = resp.data;
+          this.ok = true;
+        }
       });
     }
   }
 };
 </script>
 <style lang="less" scoped>
-
+.device-info {
+  .error-msg {
+    text-align: center;
+    color: sienna;
+  }
+}
 </style>
 
