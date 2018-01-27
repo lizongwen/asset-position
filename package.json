@@ -14,7 +14,6 @@
     "mint-ui": "^2.2.13",
     "outils": "^1.2.1",
     "vue": "^2.5.2",
-    "vue-resource": "^1.3.5",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
