@@ -15,4 +15,3 @@ const deviceInfo = function (req) {
 
 // Mock.mock( url, post/get , 返回的数据);
 Mock.mock('/api/deviceInfo', 'post', deviceInfo);
-
